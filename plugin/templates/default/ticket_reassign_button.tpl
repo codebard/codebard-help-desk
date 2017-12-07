@@ -1,0 +1,1 @@
+<button class="button" onclick="window.location='{***url***}';">{***reassign_ticket_label***}</button>

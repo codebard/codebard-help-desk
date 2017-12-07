@@ -1,0 +1,1 @@
+<div class="{***prefix***}support_bar">{***top_support_menu_buttons***}</div>

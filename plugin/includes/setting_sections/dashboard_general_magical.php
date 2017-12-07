@@ -1,0 +1,1 @@
+here is the dashboard - general - magical tab
