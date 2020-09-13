@@ -3,7 +3,7 @@
 	Plugin Name: CodeBard Help Desk
 	Plugin URI: https://codebard.com/codebard-help-desk-for-wordpress/
 	Description: Extremely easy to use, unlimited Help Desk system that just works. Unlimited Tickets, Unlimited Agents, Unlimited Users, Unlimited Departments. Works out of the box and easily extensible. 
-	Version: 1.0.6
+	Version: 1.0.8
 	Author: CodeBard
 	License: GPLv2
 	Author URI: https://codebard.com
@@ -521,9 +521,7 @@ class cb_p3_core {
 		add_action( 'wp_ajax_'.$this->internal['prefix'].'dismiss_admin_notice', array( &$this, 'dismiss_admin_notice' ),10,1 );
 		
 		add_filter( 'pre_set_site_transient_update_plugins', array(&$this, 'check_for_update' ) );
-		
-		add_filter( 'plugins_api', array( &$this, 'injectInfo' ), 90, 3 );
-				
+						
 		
 		if($this->internal['requested_action']!='')
 		{
@@ -702,7 +700,6 @@ PRIMARY KEY  (".$key."_id)
 		
 		$top_tab=array_shift(array_values($tab_hierarchy));
 		
-	
 		$tabs = $this->internal['admin_tabs'];
 
 		echo '<div id="icon-themes" class="icon32"><br></div>';
@@ -1078,9 +1075,6 @@ PRIMARY KEY  (".$key."_id)
 		$this->require_admin_page();
 		
 		$new_options=$v1['opt'];
-		
-		
-		
 		
 		$this->opt = array_replace_recursive(
 			
@@ -1618,20 +1612,29 @@ PRIMARY KEY  (".$key."_id)
 		
 		$lang_file = $this->internal['plugin_path'].'plugin/includes/languages/'.$lang.'.php';
 		
-		if(!file_exists($lang_file))
+		if( ! file_exists( $lang_file ) )
 		{
-			$lang='en-US';
-			$this->opt['lang']='en-US';
-			$this->update_opt();
-			$lang_file = $this->internal['plugin_path'].'plugin/includes/languages/'.$lang.'.php';
+			// First check if this is a custom, db saved lang. If so, load its parent
+			
+			$lang_temp = explode( '_', $lang );
+			$original_lang = $lang_temp[0];
+			
+			$lang_file = $this->internal['plugin_path'].'plugin/includes/languages/'.$original_lang.'.php';
+			
+			if(! file_exists( $lang_file ) ) {
+				// parent lang file doesnt exist. reset
+				$lang='en-US';
+				$this->opt['lang']='en-US';
+				$this->update_opt();
+				$lang_file = $this->internal['plugin_path'].'plugin/includes/languages/'.$lang.'.php';			
+			}
 			
 		}
 		
-		 
 		// Get saved values in db:
 		
 		$language_values = get_option($this->internal['prefix'].'lang_'.$lang);
-		
+
 		// If values dont exist, reset languages so we have them:
 		
 		if(!is_array($language_values))
@@ -2152,34 +2155,44 @@ PRIMARY KEY  (".$key."_id)
 		// Remove _custom from sent language id if it exists:
 		
 		$request[$this->internal['prefix'].'lang']=str_replace('_custom','',$request[$this->internal['prefix'].'lang']);
+
 		
 		$updated = update_option($this->internal['prefix'].'lang_'.$request[$this->internal['prefix'].'lang'].'_custom' ,$updated_lang);
-		
+
 		if($updated)
 		{
+			
 			$this->queue_notice($this->lang['success_language_translation_saved'],'success','success_language_translation_saved','admin');
 			
 			// Set new language to modified one:
 			
-			$this->opt['lang']=$request[$this->internal['prefix'].'lang'].'_custom';
-			
-			$updated = update_option($this->internal['prefix'].'options' ,$this->opt);
-			
-			if($updated)
-			{
-				// Reload language
+			if($this->opt['lang']==$request[$this->internal['prefix'].'lang'].'_custom') {
+				// Active language is already the same.
 				$this->lang = $this->load_language();
-				
-				$this->queue_notice($this->lang['info_active_language_updated'],'info','info_active_language_updated','admin');
-					
+						
 			}
-			else
-			{		
-				$this->queue_notice($this->lang['error_language_operation_failed'],'error','error_language_operation_failed','admin');
+			else {
 				
-				return false;
-			}		
-			
+				$this->opt['lang']=$request[$this->internal['prefix'].'lang'].'_custom';
+		
+				$updated = update_option($this->internal['prefix'].'options' ,$this->opt);
+				
+				if($updated)
+				{
+					// Reload language
+					$this->lang = $this->load_language();
+					
+					$this->queue_notice($this->lang['info_active_language_updated'],'info','info_active_language_updated','admin');
+						
+				}
+				else
+				{	
+		
+					$this->queue_notice($this->lang['error_language_operation_failed'],'error','error_language_operation_failed','admin');
+					
+					return false;
+				}		
+			}
 			// Reload language
 			
 			$this->lang = $this->load_language();
@@ -3025,6 +3038,7 @@ PRIMARY KEY  (".$key."_id)
 		
 	}
 	public function delete_item_meta_by_set_c($v1,$v2)
+
 	{
 		global $wpdb;
 		

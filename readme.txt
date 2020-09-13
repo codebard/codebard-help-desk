@@ -6,8 +6,8 @@ Donate link: https://codebard.com/donate
 Tags: support ticket system, support tickets, help desk, support system, ticket system, customer service, help desk system, customer service, tickets
 License: GPLv2
 Requires at least: 4.0
-Tested up to: 4.8
-Stable Tag: 1.0.6
+Tested up to: 5.4.2
+Stable Tag: 1.0.8
 
 Multi Language Professional Support Ticket System with Unlimited Users, Unlimited Tickets, Unlimited Departments, Agents and many features
 
@@ -79,6 +79,15 @@ To be updated
 6. Languages admin
 
 == Changelog ==
+
+= 1.0.8 =
+
+* Removed unused plugins_api hooked function
+
+= 1.0.7 =
+
+* Widget constructors are now PHP 7 compatible
+* Important issue that prevented saving and using of modified languages fixed
 
 = 1.0.6 =
 

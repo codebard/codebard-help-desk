@@ -351,7 +351,7 @@ class cb_p3_plugin extends cb_p3_core
 	
 		$post=get_post($request[$this->internal['prefix'].'ticket_id']);
 
-		$user_id = get_current_user_id();
+		$user_id = get_current_user_id();
 		$reply = $request[$this->internal['prefix'].'ticket_content'];
 		
 		// user permission check here
@@ -1555,7 +1555,6 @@ class cb_p3_plugin extends cb_p3_core
 						'user_name_link' => '<a href="'.get_author_posts_url($reply['reply_user']).'">'.get_the_author_meta( 'display_name',$reply['reply_user'] ).'</a>',
 						'reply_id'=> $reply['reply_id'],
 						'attachments_insert'=> $attachments_insert,
-						
 				);				
 				
 				$ticket.= $this->process_vars_to_template($template_vars, $ticket_entry_template);
@@ -1567,10 +1566,7 @@ class cb_p3_plugin extends cb_p3_core
 		
 		$ticket_status_changer = $this->load_template('ticket_status_changer');
 		
-		
 		$help_desk_url = get_permalink($this->opt['pages']['support_desk_page']);
-		
-	
 		
 		if($this->get_ticket_status($ticket_id)=='open')
 		{
@@ -2680,7 +2676,7 @@ class cb_p3_plugin extends cb_p3_core
 		
 		
 	
-		// Queue content filters to show content :
+		// Queue content filters to show content :
 		
 		$this->append_template_var('plugin_content_placeholder',$tickets_content);
 	
@@ -2961,7 +2957,7 @@ class cb_p3_plugin extends cb_p3_core
 		);		
 		
 		// If a department was requested, query only that. 
-		if($department_id!='')
+		if($department_id!='')
 		{
 			$args['tax_query'] = array(
 				array(
@@ -4760,11 +4756,7 @@ class cb_p3_plugin extends cb_p3_core
 
 			if(version_compare( $this->internal['version'], $checked_data->response[$this->internal['plugin_id'].'/index.php']->new_version, '<' ))
 			{
-				// place update link into update lang string :
-				
-				$update_link = $this->process_vars_to_template(array('plugin_update_url'=>$this->internal['plugin_update_url']),$this->lang['update_available']);
-
-				$this->queue_notice($update_link,'info','update_available','perma',true);		
+						
 			}
 			return $checked_data;
 		
@@ -4792,10 +4784,10 @@ class cb_p3_plugin extends cb_p3_core
 		
 		if($this->internal['woocommerce_installed'] AND $this->check_addon_exists('woocommerce_integration')=='notinstalled')
 		{
-			$this->queue_notice($this->lang['woocommerce_addon_available'],'info','update_available','perma',true);		
+				
 		}		
 	
-		$this->dismiss_admin_notice(array('notice_id'=>'update_available','notice_type'=>'info'));
+		
 		
 	}
 	public function do_setup_wizard_p()
