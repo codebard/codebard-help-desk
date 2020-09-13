@@ -375,6 +375,7 @@ class cb_p3_plugin extends cb_p3_core
 				'reply_content'    => $reply,
 				'reply_user'    => $current_user->ID,
 				'reply_group'    => 1,
+				'reply_sort'    => 0,
 		);		
 		
 		
@@ -612,6 +613,7 @@ class cb_p3_plugin extends cb_p3_core
 				'reply_content'    => $post->post_content,
 				'reply_user'    => $args['post_author'],
 				'reply_group'    => 1,
+				'reply_sort'    => 0,
 		);		
 	
 		$reply_id = $this->insert_reply('reply',$args);		
@@ -4754,7 +4756,7 @@ class cb_p3_plugin extends cb_p3_core
 				return $checked_data;
 			}
 
-			if(version_compare( $this->internal['version'], $checked_data->response[$this->internal['plugin_id'].'/index.php']->new_version, '<' ))
+			if( isset( $checked_data->response[$this->internal['plugin_id'].'/index.php'] ) AND version_compare( $this->internal['version'], $checked_data->response[$this->internal['plugin_id'].'/index.php']->new_version, '<' ))
 			{
 						
 			}
@@ -4794,7 +4796,7 @@ class cb_p3_plugin extends cb_p3_core
 	{
 		// Here we do and process setup wizard if it is not done:
 		
-		if($_REQUEST['setup_stage']=='')
+		if( isset( $_REQUEST['setup_stage'] ) AND $_REQUEST['setup_stage']=='')
 		{
 			
 			require($this->internal['plugin_path'].'plugin/includes/setup_1.php');

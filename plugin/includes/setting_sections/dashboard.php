@@ -1,7 +1,7 @@
 <div style="display:block; margin-top : 20px;"></div>
 <?php 
 	$this->check_woocommerce_exists();
-	if($this->internal['woocommerce_installed'] AND $this->check_addon_exists('woocommerce_integration')=='notinstalled')
+	if(isset ( $this->internal['woocommerce_installed'] ) AND $this->internal['woocommerce_installed'] AND $this->check_addon_exists('woocommerce_integration')=='notinstalled')
 	{
 	?>
 	

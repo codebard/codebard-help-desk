@@ -6,8 +6,8 @@ Donate link: https://codebard.com/donate
 Tags: support ticket system, support tickets, help desk, support system, ticket system, customer service, help desk system, customer service, tickets
 License: GPLv2
 Requires at least: 4.0
-Tested up to: 5.4.2
-Stable Tag: 1.0.8
+Tested up to: 5.5.1
+Stable Tag: 1.0.9
 
 Multi Language Professional Support Ticket System with Unlimited Users, Unlimited Tickets, Unlimited Departments, Agents and many features
 
@@ -58,6 +58,13 @@ If you have a WooCommerce store, get the <a href="https://codebard.com/codebard-
 <br />
 Remember to follow us on Twitter (@codebardcom) or join our Newsletter by your Quickstart Wizard to hear about new features, announcements and goodies!
 
+== Upgrade Notice ==
+
+= 1.0.9 =
+
+* Fixed an issue that may cause errors when using PHP 7.x and higher MySQL versions when replying to tickets
+* Addressed various PHP notices.
+
 == Installation ==
 
 1. Activate the plugin
@@ -79,6 +86,11 @@ To be updated
 6. Languages admin
 
 == Changelog ==
+
+= 1.0.9 =
+
+* Fixed an issue that may cause errors when using PHP 7.x and higher MySQL versions when replying to tickets
+* Addressed various PHP notices.
 
 = 1.0.8 =
 

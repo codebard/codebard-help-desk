@@ -3,7 +3,7 @@
 	Plugin Name: CodeBard Help Desk
 	Plugin URI: https://codebard.com/codebard-help-desk-for-wordpress/
 	Description: Extremely easy to use, unlimited Help Desk system that just works. Unlimited Tickets, Unlimited Agents, Unlimited Users, Unlimited Departments. Works out of the box and easily extensible. 
-	Version: 1.0.8
+	Version: 1.0.9
 	Author: CodeBard
 	License: GPLv2
 	Author URI: https://codebard.com
@@ -698,7 +698,9 @@ PRIMARY KEY  (".$key."_id)
 		
 		// Top tab is whatever is on the top of the array :
 		
-		$top_tab=array_shift(array_values($tab_hierarchy));
+		$tab_hierarchy_array = array_values($tab_hierarchy);
+		
+		$top_tab=array_shift( $tab_hierarchy_array );
 		
 		$tabs = $this->internal['admin_tabs'];
 
