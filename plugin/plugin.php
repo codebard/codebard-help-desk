@@ -832,8 +832,8 @@ class cb_p3_plugin extends cb_p3_core
 		
 		$user_id = get_current_user_id();
 		
-		$ticket_content = $_REQUEST[$this->internal['prefix'].'ticket_content'];
-		$ticket_title = $_REQUEST[$this->internal['prefix'].'ticket_title'];
+		$ticket_content = sanitize_text_field($_REQUEST[$this->internal['prefix'].'ticket_content']);
+		$ticket_title = sanitize_text_field($_REQUEST[$this->internal['prefix'].'ticket_title']);
 		$department = $_REQUEST[$this->internal['prefix'].'department'];
 		
 		// user permission check here
