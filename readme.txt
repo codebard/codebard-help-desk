@@ -7,7 +7,7 @@ Tags: support ticket system, support tickets, help desk, support system, ticket 
 License: GPLv2
 Requires at least: 4.0
 Tested up to: 5.8
-Stable Tag: 1.0.9
+Stable Tag: 1.1.0
 
 Multi Language Professional Support Ticket System with Unlimited Users, Unlimited Tickets, Unlimited Departments, Agents and many features
 
@@ -86,6 +86,10 @@ To be updated
 6. Languages admin
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Added extra sanitization to ticket title and content while posting
 
 = 1.0.9 =
 

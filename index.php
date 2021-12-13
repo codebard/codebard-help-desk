@@ -3,7 +3,7 @@
 	Plugin Name: CodeBard Help Desk
 	Plugin URI: https://codebard.com/codebard-help-desk-for-wordpress/
 	Description: Extremely easy to use, unlimited Help Desk system that just works. Unlimited Tickets, Unlimited Agents, Unlimited Users, Unlimited Departments. Works out of the box and easily extensible. 
-	Version: 1.0.9
+	Version: 1.1.0
 	Author: CodeBard
 	License: GPLv2
 	Author URI: https://codebard.com
