@@ -78,7 +78,7 @@ class cb_p3_core {
         return static::$instance;
     }
 	private function __clone()	{    }
-    private function __wakeup()	{    }
+    public function __wakeup()	{    }
 	public function __call($action,$vars)
 	{
 		
@@ -1039,9 +1039,9 @@ PRIMARY KEY  (".$key."_id)
 	{
 		if(!(is_admin() AND current_user_can( 'manage_options' )))
 		{
-		
-			
-			wp_die(__('Need admin privileges for this page',$this->internal['id'])); 
+			if ( !( defined( 'WP_CLI' ) AND WP_CLI ) ) {
+				wp_die(__('Need admin privileges for this page',$this->internal['id'])); 
+			}
 		}
 
 	}

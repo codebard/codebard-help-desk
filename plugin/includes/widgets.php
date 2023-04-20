@@ -112,7 +112,7 @@ class cb_p3_sidebar_user_widget extends WP_Widget {
 		if( !isset( $cb_p3 ) ) {
 			// If plugin is not initialized, we may be in wp-cli or some other tool that accessed this file without initiating this plugin. Use a dud object to replace it:
 			
-			$this->cb_p3 = new cb_p6_dud_language_object();
+			$this->cb_p3 = new cb_p3_dud_language_object();
 			// Get options 
 			$this->cb_p3->internal['prefix']='cb_p6';
 			$this->cb_p3->opt=get_option($this->cb_p3->internal['prefix'].'options');	
