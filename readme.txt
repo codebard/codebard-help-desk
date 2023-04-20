@@ -6,8 +6,8 @@ Donate link: https://codebard.com/donate
 Tags: support ticket system, support tickets, help desk, support system, ticket system, customer service, help desk system, customer service, tickets
 License: GPLv2
 Requires at least: 4.0
-Tested up to: 5.8
-Stable Tag: 1.1.0
+Tested up to: 6.2
+Stable Tag: 1.1.1
 
 Multi Language Professional Support Ticket System with Unlimited Users, Unlimited Tickets, Unlimited Departments, Agents and many features
 
@@ -60,10 +60,81 @@ Remember to follow us on Twitter (@codebardcom) or join our Newsletter by your Q
 
 == Upgrade Notice ==
 
+= 1.1.1 =
+
+* Fixed an issue that could interfere with certain features of WP cli that is used in managed WP hosting.
+* Fixed an issue that could create problems when deactivating the plugin
+
+= 1.1.0 =
+
+* Added extra sanitization to ticket title and content while posting
+
 = 1.0.9 =
 
 * Fixed an issue that may cause errors when using PHP 7.x and higher MySQL versions when replying to tickets
 * Addressed various PHP notices.
+
+= 1.0.8 =
+
+* Removed unused plugins_api hooked function
+
+= 1.0.7 =
+
+* Widget constructors are now PHP 7 compatible
+* Important issue that prevented saving and using of modified languages fixed
+
+= 1.0.6 =
+
+* Ticket reference numbers in Ticket notification emails
+* Buttons now use HTML5 method of wrapping links around them
+* onclick action attribute removed from buttons
+* Added error notification for cases in which ticket creation failed at WordPress post insert stage
+* Fix for ticket attachment images ending up displaying as pages
+* Fix for ticket title and replies causing errors when quotes or other characters are entered
+
+= 1.0.5 =
+
+* Major bugfix non-English (en-US) language sites and Out of Memory errors
+
+= 1.0.4 =
+
+* Major log display bug fix
+
+= 1.0.3 =
+
+* PHP Notice Fixes
+* Bugfix for ticket status display in agent/admin ticket view
+* Better permission checking when changing ticket department
+
+= 1.0.2 =
+
+* New core functions
+* Enhanced upgrade and activation routine
+* Variable handling fix in main runner function
+* Var added to core for directory name
+* Minor language fixes
+* Woocommerce integration capability
+
+= 1.0.1 =
+
+* Language now merged by values read from language file
+* Duplicate version number in default internal vars fixed
+* Duplicate roles array removed from plugin/default_internal_vars.php
+* Function name corrections
+* Error handling corrections
+* New function to internally update settings
+* Major correction for the way apply_filters is used in core engine
+* Skip department selection if there exists single department enhancement
+* Do log correction for listing serialized variables
+* Removed checking for non-false $return in core to allow filtering of results which return false
+* Default internal table now has post_type and type fields
+* Check for activated plugin for setup wizard redirect to prevent redirection in activation of other plugins
+* Remove requiring admin status for admin init to prevent ajax issues
+
+= 1.0.0 =
+
+* Initial release!
+
 
 == Installation ==
 
@@ -86,6 +157,11 @@ To be updated
 6. Languages admin
 
 == Changelog ==
+
+= 1.1.1 =
+
+* Fixed an issue that could interfere with certain features of WP cli that is used in managed WP hosting.
+* Fixed an issue that could create problems when deactivating the plugin
 
 = 1.1.0 =
 

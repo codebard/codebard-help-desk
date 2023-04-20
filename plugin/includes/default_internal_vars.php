@@ -10,7 +10,7 @@ $this->internal = array_replace_recursive(
 		'id' => 'cb_p3',
 		'plugin_id' => 'codebard-help-desk',
 		'prefix' => 'cb_p3_',
-		'version' => '1.1.0',
+		'version' => '1.1.1',
 		'plugin_name' => 'CodeBard Help Desk',
 		
 		'callable_from_request' => array(
