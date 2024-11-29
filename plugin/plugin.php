@@ -35,9 +35,6 @@ class cb_p3_plugin extends cb_p3_core
 	public function admin_init_p()
 	{
 		
-		// Updates are important - Add update nag if update exist
-		add_filter( 'pre_set_site_transient_update_plugins', array(&$this, 'check_for_update' ),99 );
-		
 		// Do setup wizard if it was not done
 		if(!isset($this->opt['setup_done']))
 		{
@@ -256,6 +253,10 @@ class cb_p3_plugin extends cb_p3_core
 		$request=$v1;
 		
 		$post=get_post($request[$this->internal['prefix'].'ticket_id']);
+
+		if ( !isset( $_REQUEST[$this->internal['prefix'] . 'ticket_status_toggle_nonce'] ) OR !wp_verify_nonce( sanitize_key( $_REQUEST[$this->internal['prefix'] . 'ticket_status_toggle_nonce'] ), 'cb_help_desk_ticket_status_toggle_nonce' ) ) {
+			return;
+		}
 		
 		$user_id = get_current_user_id();
 		
@@ -4697,6 +4698,8 @@ class cb_p3_plugin extends cb_p3_core
 		
 		$ticket_url = get_permalink($ticket_id);
 
+		$ticket_status_toggle_nonce = wp_create_nonce( 'cb_help_desk_ticket_status_toggle_nonce' );
+
 		if($this->get_ticket_status($ticket_id)=='open')
 		{
 			$change_ticket_status_label = $this->lang['ticket_status_change_to_closed'];
@@ -4707,8 +4710,10 @@ class cb_p3_plugin extends cb_p3_core
 			array(
 				$this->internal['prefix'].'ticket_id' => $ticket_id,
 				$this->internal['prefix'].'action' => 'close_ticket',
+				$this->internal['prefix'].'ticket_status_toggle_nonce' => $ticket_status_toggle_nonce,
 			), 
 			$ticket_url );
+
 		}
 	
 		elseif($this->get_ticket_status($ticket_id)=='closed')
@@ -4721,6 +4726,7 @@ class cb_p3_plugin extends cb_p3_core
 			array(
 				$this->internal['prefix'].'ticket_id' => $ticket_id,
 				$this->internal['prefix'].'action' => 'reopen_ticket',
+				$this->internal['prefix'].'ticket_status_toggle_nonce' => $ticket_status_toggle_nonce,
 			), 
 			$ticket_url );
 			
@@ -4748,21 +4754,6 @@ class cb_p3_plugin extends cb_p3_core
 		
 		
 	}
-	public function check_for_update($checked_data) 
-	{
-			global $wp_version, $plugin_version, $plugin_base;
-		
-			if ( empty( $checked_data->checked ) ) {
-				return $checked_data;
-			}
-
-			if( isset( $checked_data->response[$this->internal['plugin_id'].'/index.php'] ) AND version_compare( $this->internal['version'], $checked_data->response[$this->internal['plugin_id'].'/index.php']->new_version, '<' ))
-			{
-						
-			}
-			return $checked_data;
-		
-	}	
 	public function upgrade_p($v1,$v2)
 	{
 		

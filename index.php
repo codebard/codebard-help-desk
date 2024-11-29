@@ -3,7 +3,7 @@
 	Plugin Name: CodeBard Help Desk
 	Plugin URI: https://codebard.com/codebard-help-desk-for-wordpress/
 	Description: Extremely easy to use, unlimited Help Desk system that just works. Unlimited Tickets, Unlimited Agents, Unlimited Users, Unlimited Departments. Works out of the box and easily extensible. 
-	Version: 1.1.1
+	Version: 1.1.2
 	Author: CodeBard
 	License: GPLv2
 	Author URI: https://codebard.com
@@ -519,10 +519,7 @@ class cb_p3_core {
 		add_action( 'admin_notices', array(&$this,'admin_notices'));
 		
 		add_action( 'wp_ajax_'.$this->internal['prefix'].'dismiss_admin_notice', array( &$this, 'dismiss_admin_notice' ),10,1 );
-		
-		add_filter( 'pre_set_site_transient_update_plugins', array(&$this, 'check_for_update' ) );
-						
-		
+				
 		if($this->internal['requested_action']!='')
 		{
 			$this->{$this->internal['requested_action']}($_REQUEST);
