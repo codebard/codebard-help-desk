@@ -6,8 +6,8 @@ Donate link: https://codebard.com/donate
 Tags: support ticket system, support tickets, help desk, support system, ticket system, customer service, help desk system, customer service, tickets
 License: GPLv2
 Requires at least: 4.0
-Tested up to: 6.2
-Stable Tag: 1.1.1
+Tested up to: 6.7.1
+Stable Tag: 1.1.2
 
 Multi Language Professional Support Ticket System with Unlimited Users, Unlimited Tickets, Unlimited Departments, Agents and many features
 
@@ -59,6 +59,10 @@ If you have a WooCommerce store, get the <a href="https://codebard.com/codebard-
 Remember to follow us on Twitter (@codebardcom) or join our Newsletter by your Quickstart Wizard to hear about new features, announcements and goodies!
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+
+* Added a nonce to ticket close/reopen button for more security
 
 = 1.1.1 =
 
@@ -157,6 +161,10 @@ To be updated
 6. Languages admin
 
 == Changelog ==
+
+= 1.1.2 =
+
+* Added a nonce to ticket close/reopen button for more security
 
 = 1.1.1 =
 
